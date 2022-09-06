@@ -11,46 +11,74 @@
 
 class PHPCaptcha{
 	
+	private $imagesDir = "";
+	private $image;
 	
+	public function __construct(string $path){
+		$this->imagesDir = $path;
+	}
 	
-	
-	
-}
+	public function getRandomImage(){
 
-	$imagesDir = 'img/';
-
-	$images = glob($imagesDir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+	
+	$images = glob($this->imagesDir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 	
 	$randomImage = $images[array_rand($images)];
+	
+	return $randomImage;
+	}
+	
+	public function getHash($randomImage){
+		$hash = substr($randomImage, 4, 64);
+		return $hash;
+	}
+	
+	public function render(){
+		
+		$this->image = $this->getRandomImage();
+		$preview = '
+		<form method="post" style="display: inline;">
+		<input style="display: inline;" name="text" type="text">
+		<br>
+		<img src="';
+		$preview .= $this->image;
+		$preview .= '" onContextMenu="return false;">
+		<br>
+		<input style="display:none;" name="hash" type="text" value="';
+		$preview .= $this->getHash($this->image);
+		$preview .= '">
+		<input name="verify" type="submit" value="verify">
+		</form>';
+		
+		
+		return $preview;
+	}
+	
+	public function verify(string $text, string $hash){
+		if(hash('sha256', $text) == $hash)
+			return true;
+		else 
+			return false;
+	}
+	
+	public function show(){
+		echo $this->render();
+	}
+}
 
 	
-	$hash = substr($randomImage, 4, 64);
-	
+$captcha = new PHPCaptcha('img/');
+$captcha->show();
+
 if(isset($_POST['verify'])){
-	
-	if(hash('sha256', $_POST['text']) == $_POST['hash']){
-		echo '
-		<script>alert("Verified");</script>
-		';
-	}
-	else {
-		echo '
-		<script>alert("Not verified");</script>
-		';
-	}
+	if($captcha->verify($_POST['text'], $_POST['hash']))
+		echo "true";
+	else
+		echo "false";
 }
 
 
 
 ?>
 
-	<form method="post" style="display: inline;">
-	Text:
-	<input style="display: inline;" name="text" type="text">
-	<br>
-	<?php echo '<img src="'.$randomImage.'">';?>
-	<br>
-	<input style="display:none;" name="hash" type="text" value="<?php echo $hash;?>">
-	<br>
-	<input name="verify" type="submit" value="verify">
-	</form>
+	
