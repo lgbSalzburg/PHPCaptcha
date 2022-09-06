@@ -15,6 +15,6 @@ To Generate the Images, just run create.py or loop.py with the number of images 
 These images will be saved in the *img/* folder in the same directory as the create.py file.
 The file name of the images is the text displayed on them hashed with *sha256*
 
-##Place on website
+## Place on website
 
 
