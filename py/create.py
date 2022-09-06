@@ -6,7 +6,7 @@ from PIL import ImageDraw
 import random
 import string
 import hashlib
-from hashlib import sha1
+
 
 def get_random_string(length):
     # choose from all lowercase letter
@@ -15,6 +15,10 @@ def get_random_string(length):
     return result_str
 
 text = get_random_string(6)
+
+text = text.replace("q","g")
+
+text = text.replace("l","i")
 
 h = hashlib.new('sha256')
 
@@ -25,6 +29,7 @@ h = h.hexdigest()
 
 print(h)
 print(text)
+
 text = ' '.join(text).strip() 
  
 # creating a image object (new image object) with
@@ -37,8 +42,11 @@ draw.rectangle((0, 0, 299, 99), outline='black')
 font = ImageFont.truetype(r'C:\Users\marti\code\py\Buggie-L3y03.ttf', 40) 
 
 draw.text((35, 30),text,fill="green", font = font, align="center")
+
+#draw some lines 
 draw.ellipse([(30, 0), (500, 200)], fill=None, outline='green', width=2)
 
 draw.ellipse([(150, -50), (800, 200)], fill=None, outline='green', width=2)
-# This method will show image in any image viewer
-img.show()
+
+img.save('img/'+h+'.jpg')
+h = ""
