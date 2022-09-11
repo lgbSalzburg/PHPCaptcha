@@ -39,7 +39,7 @@ img = PIL.Image.new(mode = "RGB", size = (300, 100),
 draw = ImageDraw.Draw(img)
 draw.rectangle((0, 0, 299, 99), outline='black')
 # specified font size
-font = ImageFont.truetype(r'C:\Users\marti\code\py\Buggie-L3y03.ttf', 40) 
+font = ImageFont.truetype(r'fonts/Buggie-L3y03.ttf', 40) 
 
 draw.text((35, 30),text,fill="green", font = font, align="center")
 
