@@ -6,6 +6,7 @@ from PIL import ImageDraw
 import random
 import string
 import hashlib
+import os
 
 
 def get_random_string(length):
@@ -47,6 +48,10 @@ draw.text((35, 30),text,fill="green", font = font, align="center")
 draw.ellipse([(30, 0), (500, 200)], fill=None, outline='green', width=2)
 
 draw.ellipse([(150, -50), (800, 200)], fill=None, outline='green', width=2)
+
+if not os.path.exists('img/'):
+    os.mkdir("img/")
+
 
 img.save('img/'+h+'.jpg')
 h = ""
