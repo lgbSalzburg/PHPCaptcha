@@ -33,7 +33,29 @@ $captcha->setWidth(200);
 ```
    This is only necessary if you want to change the with of the image which is set to 300px by default.
 
-4. To display the captcha use the *show()* function in the place you want it to be displayed
+4. Add the verify() function to your existing code
+```php
+$error = !$captcha->verify($_POST['input'], $_POST['hash']);
+```
+
+5. Add/Remove the *verify* button of the captcha:
+
+Normaly the captcha is used below a input form, so there should already be a button to send of the form.
+
+If you want to display the *verify* button add this line:
+```php
+$captcha->displayButton(true);
+```
+with this button you can just use this code to verify the input:
+```php
+if(isset($_POST['verify'])){
+	if($captcha->verify($_POST['input'], $_POST['hash']))
+		echo "true";
+	else
+		echo "false";
+}
+```
+6. To display the captcha use the *show()* function in the place you want it to be displayed
 ```php
 $captcha->show();
 ```
