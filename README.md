@@ -22,10 +22,12 @@ To place the captcha on your website you need to do the following steps:
 include 'PHPCapcha.php';
 ```
 
+
 2. Create a PHPCaptcha object with the path to the folder where the captcha images are stored as argument
 ```php
 $captcha = new PHPCaptcha('img/');
 ```
+
 
 3. (Set the width of the image in px) 
 ```php
@@ -33,16 +35,18 @@ $captcha->setWidth(200);
 ```
    This is only necessary if you want to change the with of the image which is set to 300px by default.
 
+
 4. Add the verify() function to your existing code
 ```php
 $error = !$captcha->verify($_POST['input'], $_POST['hash']);
 ```
 
+
 5. Add/Remove the *verify* button of the captcha:
 
-Normaly the captcha is used below a input form, so there should already be a button to send of the form.
+Normaly the captcha is used below an input form, so there should already be a button to send of the form.
 
-If you want to display the *verify* button add this line:
+If you still want to display the *verify* button add this line:
 ```php
 $captcha->displayButton(true);
 ```
@@ -55,6 +59,8 @@ if(isset($_POST['verify'])){
 		echo "false";
 }
 ```
+
+
 6. To display the captcha use the *show()* function in the place you want it to be displayed
 ```php
 $captcha->show();
