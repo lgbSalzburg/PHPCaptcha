@@ -52,13 +52,16 @@ class PHPCaptcha{
 		if($this->standalone)
 			$preview .= '<form method="post" style="display: inline;">';
 		
-		$preview .= '<input id="captchaInput" style="display: inline; width:'.$this->width.'px;" name="input" type="text">
+		$preview .= '
+		<img id="captchaImage" src="';
+		
+		$preview .= $this->image;
+		$preview .= '" onContextMenu="return false;" style="width:'.$this->width.'px;">';
+		$preview .= '
 		<br>
 		<div style="height: 0.5rem;"></div>
-		<img id="captchaImage" src="';
-		$preview .= $this->image;
-		$preview .= '" onContextMenu="return false;" style="width:'.$this->width.'px;">
-		<br>
+		<input id="captchaInput" style="display: inline; width:'.$this->width.'px;" name="input" type="text">
+		
 		<div style="height: 0.5rem;"></div>
 		<input style="display:none;" name="hash" type="text" value="';
 		$preview .= $this->getHash($this->image);
