@@ -13,6 +13,7 @@ class PHPCaptcha{
 	
 	private $imagesDir = "";
 	private $image;
+	private $width = 300;
 	
 	public function __construct(string $path){
 		$this->imagesDir = $path;
@@ -33,6 +34,10 @@ class PHPCaptcha{
 		return $hash;
 	}
 	
+	public function setWidth($width){
+		$this->width = $width;
+	}
+	
 	public function render(){
 		
 		$this->image = $this->getRandomImage();
@@ -42,7 +47,7 @@ class PHPCaptcha{
 		<br>
 		<img src="';
 		$preview .= $this->image;
-		$preview .= '" onContextMenu="return false;">
+		$preview .= '" onContextMenu="return false;" style="width:'.$this->width.'px;">
 		<br>
 		<input style="display:none;" name="hash" type="text" value="';
 		$preview .= $this->getHash($this->image);
@@ -68,6 +73,7 @@ class PHPCaptcha{
 
 	
 $captcha = new PHPCaptcha('img/');
+$captcha->setWidth(200);
 $captcha->show();
 
 if(isset($_POST['verify'])){
