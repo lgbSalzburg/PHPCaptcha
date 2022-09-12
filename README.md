@@ -5,16 +5,6 @@ PHPCaptcha is a PHP library for easy Implementations of captchas.
 
 A captcha is a completely automated public Turing test to tell computers and humans apart.
 
-## Install
-
-## Generate Images
-To generate the images, just run create.py or loop.py with the number of images you want to generate.
-
-(If you have not added the python lib [**_Pillow_**](https://pillow.readthedocs.io/en/stable/) just run [install.py](py/create.py) or get it from the [official page](https://pillow.readthedocs.io/en/stable/installation.html).)
-
-These images will be saved in the *img/* folder in the same directory as the create.py file.
-The file name of the images is the text displayed on them hashed with *sha256*
-
 ## Place on website
 To place the captcha on your website you need to do the following steps:
 1. Import [*PHPCaptcha.php*](src/PHPCaptcha.php) into the namespace (this has to be **before** initiating the object)
@@ -69,8 +59,20 @@ $captcha->show();
 ```
 
 ## Styles
+There is a [stylesheet](css/PHPCaptcha.css) which only contains some basic styles.
+Feel free to add your own styles in there :)
 
+## Generate Images
+To generate the images, just run create.py or loop.py with the number of images you want to generate.
+
+(If you have not added the python lib [**_Pillow_**](https://pillow.readthedocs.io/en/stable/) just run [install.py](py/create.py) or get it from the [official page](https://pillow.readthedocs.io/en/stable/installation.html).)
+
+These images will be saved in the *img/* folder in the same directory as the create.py file.
+The file name of the images is the text displayed on them hashed with *sha256*
 
 ## Requirements
+Just for the Captcha you only need PHP 8.0 running
 
+If you want to generate your own captcha images you also need python 3.4 or higher
+Additionaly you need [pip](https://pypi.org/project/pip/) in order to install [Pillow](https://pillow.readthedocs.io/en/stable/)
 
