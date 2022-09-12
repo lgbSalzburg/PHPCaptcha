@@ -21,10 +21,12 @@ To place the captcha on your website you need to do the following steps:
 ```php
 include 'PHPCapcha.php';
 ```
+
 2. Create a PHPCaptcha object with the path to the folder where the captcha images are stored as argument
 ```php
 $captcha = new PHPCaptcha('img/');
 ```
+
 3. (Set the width of the image in px) 
 ```php
 $captcha->setWidth(200);
@@ -35,6 +37,7 @@ $captcha->setWidth(200);
 ```php
 $captcha->show();
 ```
+
 ## Requirements
 
 
