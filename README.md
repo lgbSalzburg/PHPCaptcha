@@ -67,11 +67,11 @@ To generate the images, just run create.py with the number of images you want to
 
 (If you have not added the python lib [**_Pillow_**](https://pillow.readthedocs.io/en/stable/) just run [install.py](py/create.py) or get it from the [official page](https://pillow.readthedocs.io/en/stable/installation.html).)
 
-These images will be saved in the *img/* folder in the same directory as the [py](py/) folder.
+These images will be saved in the *img/* folder in the same directory as the [py](py) folder.
 The file name of the images is the text displayed on them hashed with *sha256*
 
 ## Sample Images
-If you do not want to generate your own images, there are 50 sample images in the [img](img/) folder for you to use.
+If you do not want to generate your own images, there are 50 sample images in the [img](img) folder for you to use.
 
 ## Requirements
 Just for the Captcha you only need PHP 8.0 running
