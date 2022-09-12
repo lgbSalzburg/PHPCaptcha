@@ -14,6 +14,7 @@ class PHPCaptcha{
 	private $imagesDir = "";
 	private $image;
 	private $width = 300;
+	private $button = false;
 	
 	public function __construct(string $path){
 		$this->imagesDir = $path;
@@ -37,13 +38,17 @@ class PHPCaptcha{
 	public function setWidth($width){
 		$this->width = $width;
 	}
+
+	public function displayButton($button){
+		$this->button = $button;
+	}
 	
 	public function render(){
 		
 		$this->image = $this->getRandomImage();
 		$preview = '
 		<form method="post" style="display: inline;">
-		<input style="display: inline;" name="text" type="text">
+		<input style="display: inline;" name="input" type="text">
 		<br>
 		<img src="';
 		$preview .= $this->image;
@@ -51,9 +56,10 @@ class PHPCaptcha{
 		<br>
 		<input style="display:none;" name="hash" type="text" value="';
 		$preview .= $this->getHash($this->image);
-		$preview .= '">
-		<input name="verify" type="submit" value="verify">
-		</form>';
+		$preview .= '">';
+		if($this->button)
+			$preview .= '<input name="verify" type="submit" value="verify">';
+		$preview .= '</form>';
 		
 		
 		return $preview;
@@ -74,10 +80,11 @@ class PHPCaptcha{
 	
 $captcha = new PHPCaptcha('img/');
 $captcha->setWidth(200);
+$captcha->displayButton(true);
 $captcha->show();
 
 if(isset($_POST['verify'])){
-	if($captcha->verify($_POST['text'], $_POST['hash']))
+	if($captcha->verify($_POST['input'], $_POST['hash']))
 		echo "true";
 	else
 		echo "false";
