@@ -29,7 +29,7 @@ $captcha = new PHPCaptcha('img/');
 ```php
 $captcha->setWidth(200);
 ```
-This is only necessary if you want to change the with of the image which is set to 300px by default.
+    This is only necessary if you want to change the with of the image which is set to 300px by default.
 
 4. To display the captcha use the *show()* function in the place you want it to be displayed
 ```php
