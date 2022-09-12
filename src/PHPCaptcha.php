@@ -48,17 +48,20 @@ class PHPCaptcha{
 		$this->image = $this->getRandomImage();
 		$preview = '
 		<form method="post" style="display: inline;">
-		<input style="display: inline;" name="input" type="text">
+		<input id="captchaInput" style="display: inline; width:'.$this->width.'px;" name="input" type="text">
 		<br>
-		<img src="';
+		<div style="height: 0.5rem;"></div>
+		<img id="captchaImage" src="';
 		$preview .= $this->image;
 		$preview .= '" onContextMenu="return false;" style="width:'.$this->width.'px;">
 		<br>
+		<div style="height: 0.5rem;"></div>
 		<input style="display:none;" name="hash" type="text" value="';
 		$preview .= $this->getHash($this->image);
 		$preview .= '">';
 		if($this->button)
-			$preview .= '<input name="verify" type="submit" value="verify">';
+			$preview .= '<input id="captchaButton" name="verify" type="submit" value="verify">
+			<div style="height: 0.5rem;"></div>';
 		$preview .= '</form>';
 		
 		
@@ -76,21 +79,6 @@ class PHPCaptcha{
 		echo $this->render();
 	}
 }
-
-	
-$captcha = new PHPCaptcha('img/');
-$captcha->setWidth(200);
-$captcha->displayButton(true);
-$captcha->show();
-
-if(isset($_POST['verify'])){
-	if($captcha->verify($_POST['input'], $_POST['hash']))
-		echo "true";
-	else
-		echo "false";
-}
-
-
 
 ?>
 
