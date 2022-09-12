@@ -15,6 +15,7 @@ class PHPCaptcha{
 	private $image;
 	private $width = 300;
 	private $button = false;
+	private $standalone = false;
 	
 	public function __construct(string $path){
 		$this->imagesDir = $path;
@@ -31,7 +32,7 @@ class PHPCaptcha{
 	}
 	
 	public function getHash($randomImage){
-		$hash = substr($randomImage, 4, 64);
+		$hash = substr($randomImage, strlen($this->imagesDir), 64);
 		return $hash;
 	}
 	
@@ -46,9 +47,12 @@ class PHPCaptcha{
 	public function render(){
 		
 		$this->image = $this->getRandomImage();
-		$preview = '
-		<form method="post" style="display: inline;">
-		<input id="captchaInput" style="display: inline; width:'.$this->width.'px;" name="input" type="text">
+		$preview = "";
+
+		if($this->standalone)
+			$preview .= '<form method="post" style="display: inline;">';
+		
+		$preview .= '<input id="captchaInput" style="display: inline; width:'.$this->width.'px;" name="input" type="text">
 		<br>
 		<div style="height: 0.5rem;"></div>
 		<img id="captchaImage" src="';
@@ -59,10 +63,13 @@ class PHPCaptcha{
 		<input style="display:none;" name="hash" type="text" value="';
 		$preview .= $this->getHash($this->image);
 		$preview .= '">';
+
 		if($this->button)
 			$preview .= '<input id="captchaButton" name="verify" type="submit" value="verify">
 			<div style="height: 0.5rem;"></div>';
-		$preview .= '</form>';
+		
+		if($this->standalone)
+			$preview .= '</form>';
 		
 		
 		return $preview;
@@ -77,6 +84,14 @@ class PHPCaptcha{
 	
 	public function show(){
 		echo $this->render();
+	}
+
+	public function setStandalone($bool){
+		$this->standalone = $bool;
+	}
+
+	public function getPath(){
+		return $this->imagesDir;
 	}
 }
 
