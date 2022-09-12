@@ -10,7 +10,7 @@ A captcha is a completely automated public Turing test to tell computers and hum
 ## Generate Images
 To generate the images, just run create.py or loop.py with the number of images you want to generate.
 
-(If you have not added the python lib [**_Pillow_**](https://pillow.readthedocs.io/en/stable/) just run install.py or get it from the [official page](https://pillow.readthedocs.io/en/stable/installation.html).)
+(If you have not added the python lib [**_Pillow_**](https://pillow.readthedocs.io/en/stable/) just run [install.py](py/create.py) or get it from the [official page](https://pillow.readthedocs.io/en/stable/installation.html).)
 
 These images will be saved in the *img/* folder in the same directory as the create.py file.
 The file name of the images is the text displayed on them hashed with *sha256*
@@ -29,7 +29,7 @@ $captcha = new PHPCaptcha('img/');
 ```php
 $captcha->setWidth(200);
 ```
- This is only necessary if you want to change the with of the image which is set to 300px by default.
+   This is only necessary if you want to change the with of the image which is set to 300px by default.
 
 4. To display the captcha use the *show()* function in the place you want it to be displayed
 ```php
