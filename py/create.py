@@ -47,9 +47,11 @@ def create():
     draw.text((35, 30),text,fill="green", font = font, align="center")
 
     #draw some lines 
-    draw.ellipse([(30, 0), (500, 200)], fill=None, outline='green', width=2)
+    draw.ellipse([(30, 0), (500, 200)], fill=None, outline="green", width=2)
 
-    draw.ellipse([(150, -50), (800, 200)], fill=None, outline='green', width=2)
+    draw.ellipse([(150, -50), (800, 200)], fill=None, outline="green", width=2)
+
+    draw.ellipse([(-50, -50), (800, 70)], fill=None, outline="green", width=2)
 
     if not os.path.exists('../img/'):
         os.mkdir("../img/")
