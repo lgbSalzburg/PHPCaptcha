@@ -68,6 +68,9 @@ if(isset($_POST['verify'])){
 $captcha->show();
 ```
 
+## Styles
+
+
 ## Requirements
 
 
