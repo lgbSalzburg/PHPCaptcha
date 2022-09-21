@@ -60,7 +60,7 @@ class PHPCaptcha{
 		$preview .= '
 		<br>
 		<div style="height: 0.5rem;"></div>
-		<input id="captchaInput" style="display: inline; width:'.$this->width.'px;" name="input" type="text">
+		<input id="captchaInput" style="display: inline; width:'.$this->width.'px;" name="input" type="text" required>
 		
 		<div style="height: 0.5rem;"></div>
 		<input style="display:none;" name="hash" type="text" value="';
